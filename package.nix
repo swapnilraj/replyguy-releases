@@ -25,6 +25,7 @@ stdenvNoCC.mkDerivation {
     runHook preInstall
     mkdir -p $out/share/replyguy
     cp -r . $out/share/replyguy/
+    install -Dm644 public/icon.png $out/share/pixmaps/replyguy.png
     # REPLYGUY_NIX: updates come through the flake, so the app only says when a new one is out.
     makeWrapper ${lib.getExe electron} $out/bin/replyguy \
       --add-flags $out/share/replyguy \
@@ -37,6 +38,7 @@ stdenvNoCC.mkDerivation {
       name = "replyguy";
       exec = "replyguy";
       desktopName = "replyguy";
+      icon = "replyguy";
       comment = "Drafts X replies and posts in your voice";
       categories = [ "Utility" ];
     })
